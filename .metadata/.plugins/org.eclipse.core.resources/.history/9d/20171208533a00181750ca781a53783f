@@ -1,0 +1,47 @@
+import com.datastax.driver.core.Cluster;
+import com.datastax.driver.core.ResultSet;
+import com.datastax.driver.core.Row;
+import com.datastax.driver.core.Session;
+
+public class Partitioning{
+	
+	static Cluster cluster;
+	static Session session;
+	static ResultSet resultSet;
+	
+	public static void main(String args[]){
+		cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
+		session = cluster.connect();
+		session.execute("CREATE KEYSPACE IF NOT EXISTS keyspace2 WITH replication " + "= {'class':'SimpleStrategy','replication_factor':1}; ");
+		session.execute("USE keyspace2");
+		session.execute("CREATE TABLE IF NOT EXISTS users (name text PRIMARY KEY, age int);");
+		session.execute("INSERT INTO users (name, age) VALUES ('Abhishek', 22);");
+		session.execute("INSERT INTO users (name, age) VALUES ('Swapnil', 21);");
+		session.execute("INSERT INTO users (name, age) VALUES ('Madhura', 22);");
+		session.execute("INSERT INTO users (name, age) VALUES ('Hansraj', 21);");
+		session.execute("INSERT INTO users (name, age) VALUES ('Amruta', 23);");
+		
+		
+		/*Round Robin*/
+		resultSet = session.execute("SELECT * FROM users;");
+		System.out.println("Round Robin Partitioning");
+		int i = 0, diskNo = 0, totalDisk = 4;
+		System.out.println("Round Robin :: ");
+		for(Row rows : resultSet){
+			diskNo = i++ % totalDisk;											//IMP
+			System.out.println("Disk " + diskNo + " : " + rows.getString("name") + " " +rows.getInt("age"));
+		}
+		
+		/*Hash*/
+		int age;
+		resultSet = session.execute("SELECT * FROM users;");
+		System.out.println("Hash Partitioning");
+		for(Row rows : resultSet){
+			age = rows.getInt("age");
+			diskNo = age % totalDisk;
+			System.out.println("Disk " + diskNo + " : " + rows.getString("name") + " " +rows.getInt("age"));
+		}
+		cluster.close();
+	}
+	
+}

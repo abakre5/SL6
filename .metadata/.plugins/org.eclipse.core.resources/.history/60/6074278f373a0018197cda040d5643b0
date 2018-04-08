@@ -1,0 +1,13 @@
+import java.net.Socket;
+
+
+public class Client implements Runnable{
+
+	static Socket clientSocket;
+	
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

@@ -1,0 +1,19 @@
+import java.io.DataInputStream;
+import java.net.Socket;
+
+
+public class ClientThread extends Thread{
+	
+	Server server = null;
+	Socket clSocket = null;
+	DataInputStream dataInputStream;
+	
+	
+	public ClientThread(Server server, Socket clSocket){
+		this.server = server;
+		this.clSocket = clSocket;
+	}
+	
+
+	
+}

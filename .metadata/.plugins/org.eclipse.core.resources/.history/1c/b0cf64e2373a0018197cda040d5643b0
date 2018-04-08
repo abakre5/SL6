@@ -1,0 +1,37 @@
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+
+public class Client implements Runnable{
+
+	static Socket clientSocket;
+	static PrintStream printStream;
+	static DataInputStream dataInputStream;
+	static BufferedReader bufferedReader;
+	static boolean closed = false;
+	
+	public static void main(String args[]){
+		String host = "localhost";
+		int port = 9999;
+		
+		try {
+			clientSocket = new Socket(host, port);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

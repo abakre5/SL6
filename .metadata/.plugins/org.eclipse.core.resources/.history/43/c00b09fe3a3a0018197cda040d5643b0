@@ -1,0 +1,12 @@
+public class Server{
+	
+	boolean closed = false, inputFromAll = false;
+	List<ClientThread> clientThreadList;
+	
+	public static void main(String[] args) {
+		
+		
+		
+	}
+	
+}

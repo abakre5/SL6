@@ -1,0 +1,9 @@
+
+public class Client implements Runnable{
+
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

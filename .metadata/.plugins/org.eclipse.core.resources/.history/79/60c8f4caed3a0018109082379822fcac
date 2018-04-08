@@ -1,0 +1,26 @@
+import java.util.Random;
+
+
+public class Point {
+	
+	public double x;
+	public double y;
+	public int clusterNumber;
+	
+	public Point(double x, double y) {
+		this.x = x;
+		this.y = y;
+		this.clusterNumber = 0;
+	}
+	
+	public static double Distance(Point p, Point centroid){
+		return Math.sqrt(Math.pow(centroid.y - p.y, 2) + Math.pow(centroid.x - p.x, 2));
+	}
+	
+	public static Point generateRandomPoint(int min, int max){
+		Random random = new Random();
+		
+		return new Point(x, y);
+	}
+	
+}

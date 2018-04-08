@@ -1,0 +1,10 @@
+import java.util.List;
+
+
+public class Cluster {
+
+	public List<Point> points;
+	public Point centroid;
+	
+	
+}

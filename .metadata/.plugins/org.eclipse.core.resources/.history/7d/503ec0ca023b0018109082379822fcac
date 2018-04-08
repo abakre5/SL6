@@ -1,0 +1,118 @@
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class Kmeans {
+
+	private static final int NUM_CLUSTER = 3;
+	private static final int NUM_POINTS = 15;
+	private static final int MIN = 0; 
+	private static final int MAX = 10;
+	
+	private List<Point> points;
+	private List<Cluster> clusters;
+	
+	public Kmeans(){
+		this.points = new ArrayList<Point>();
+		this.clusters = new ArrayList<Cluster>(NUM_CLUSTER);
+	}
+	
+	public void init(){
+		points = Point.generateRandomPointList(MIN, MAX, NUM_POINTS);
+		for (int i = 0; i < NUM_CLUSTER; i++) {
+			Cluster cluster = new Cluster();
+			cluster.centroid = Point.generateRandomPoint(MIN, MAX);
+			clusters.add(cluster);
+		}
+		PlotCluster();
+	}
+	
+	private void PlotCluster() {
+		for (int i = 0; i < clusters.size(); i++) 
+			clusters.get(i).plotCluser();
+	}
+
+	public void calculate(){
+		
+		int it = 0;
+		
+		while(true){
+			ClearClusters();
+			List<Point> lastCentroids = getCentroidslastCentroids();
+//			for(int i = 0;i < lastCentroids.size();i++)	System.out.println("l " + lastCentroids.get(i).x);
+			assignCluster();
+			calculateCentroids();
+			it++;
+			List<Point> currentCentroids = getCentroidscurrentCentroids();
+//			for(int i = 0;i < currentCentroids.size();i++)	System.out.println("c " + currentCentroids.get(i).x);
+			double distanceBetweenCentroids = 0;
+			for (int i = 0; i < lastCentroids.size(); i++) {
+				System.out.println(lastCentroids.get(i).x + " " + currentCentroids.get(i).x);
+				distanceBetweenCentroids += Point.Distance(lastCentroids.get(i), currentCentroids.get(i));
+			}
+			
+			System.out.println("############ Iteration Number " + it + " ############");
+			System.out.println("Centroid Distnace :: " + distanceBetweenCentroids);
+			PlotCluster();
+			if(distanceBetweenCentroids	== 0)	break;
+		}
+		
+	}
+	
+	private void calculateCentroids() {
+		for (int i = 0; i < clusters.size(); i++) {
+			double sumX = 0;
+			double sumY = 0;
+			for (int j = 0; j < clusters.get(i).points.size(); j++) {
+				sumX +=  clusters.get(i).points.get(j).x;
+				sumY +=  clusters.get(i).points.get(j).y;
+			}
+			if(clusters.get(i).points.size() > 0){
+				clusters.get(i).centroid.x = sumX / clusters.get(i).points.size();
+				clusters.get(i).centroid.y = sumY / clusters.get(i).points.size();
+			}
+		}
+	}
+
+	private void assignCluster() {
+		double max = Double.MAX_VALUE;
+		double min = max; 
+		int cluster = 0;                 
+		double distance = 0.0; 
+		for(int i = 0;i < points.size();i++){
+			min = max;
+			for (int j = 0; j < clusters.size(); j++) {
+				distance = Point.Distance(points.get(i), clusters.get(j).centroid);
+				if(distance < min){
+					min = distance;
+					cluster = j;
+				}
+			}
+			points.get(i).clusterNumber = cluster;
+			clusters.get(cluster).points.add(points.get(i));
+		}
+	}
+
+	private List<Point> getCentroids() {
+		List<Point> centroids = new ArrayList<Point>();
+		for(int i = 0;i < clusters.size();i++){
+			Point aux = clusters.get(i).centroid;
+			centroids.add(aux);
+		}
+		return centroids;
+	}
+
+	private void ClearClusters() {
+		for (int i = 0; i < clusters.size(); i++) 
+			clusters.get(i).Clear();
+	}
+
+	public static void main(String[] args) {
+		
+		Kmeans kmeans =  new Kmeans();
+		kmeans.init();
+		kmeans.calculate();
+		
+	}
+
+}

@@ -1,0 +1,8 @@
+
+public class Point {
+	
+	public double x;
+	private double y;
+	private int cluster_number;
+	
+}

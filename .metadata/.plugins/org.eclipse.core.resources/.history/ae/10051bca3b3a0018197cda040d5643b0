@@ -1,0 +1,21 @@
+import java.util.ArrayList;
+import java.util.List;
+
+
+
+public class Server{
+	
+	boolean closed = false, inputFromAll = false;
+	List<ClientThread> clientThreadList;
+	List<String> data;
+	
+	Server(){
+		clientThreadList = new ArrayList<ClientThread>();
+		data = new ArrayList<String>();
+	}
+	
+	public static void main(String[] args) {
+				
+	}
+	
+}

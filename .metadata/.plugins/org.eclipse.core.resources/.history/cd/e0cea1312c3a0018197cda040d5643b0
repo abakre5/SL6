@@ -1,0 +1,31 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+
+
+public class PageRank {
+
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		double dampFactor = 0.85;
+
+		System.out.print("Enter number of webpages :: ");
+		
+		int n = sc.nextInt();
+		int total = 20;
+		HashMap<Integer, ArrayList<Integer>> links = new HashMap<Integer, ArrayList<Integer>>();
+		
+		sc.nextLine();
+		
+		for(int i = 0;i < n;i++){
+			System.out.print("Enter pages connects to " + i + " ::  ");
+			String str = "";
+			str = sc.nextLine();
+			String pageList[] = str.split(" ");
+		}
+		
+	}
+
+}

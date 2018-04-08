@@ -1,0 +1,20 @@
+import java.util.ArrayList;
+import java.util.List;
+
+
+
+public class Server{
+	
+	boolean closed = false, inputFromAll = false;
+	List<ClientThread> clientThreadList;
+	List<String> data;
+	
+	Server(){
+		clientThreadList = new ArrayList<ClientThread>;
+	}
+	
+	public static void main(String[] args) {
+				
+	}
+	
+}

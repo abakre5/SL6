@@ -1,0 +1,15 @@
+import java.util.List;
+
+
+
+public class Server{
+	
+	boolean closed = false, inputFromAll = false;
+	List<ClientThread> clientThreadList;
+	List<String> data;
+	
+	public static void main(String[] args) {
+				
+	}
+	
+}

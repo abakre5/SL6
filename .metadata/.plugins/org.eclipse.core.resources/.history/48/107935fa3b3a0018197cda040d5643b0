@@ -1,0 +1,27 @@
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
+
+
+
+public class Server{
+	
+	boolean closed = false, inputFromAll = false;
+	List<ClientThread> clientThreadList;
+	List<String> data;
+	
+	Server(){
+		clientThreadList = new ArrayList<ClientThread>();
+		data = new ArrayList<String>();
+	}
+	
+	public static void main(String[] args) {
+			Server server = new Server();
+			Socket clSocket = null;
+			ServerSocket serverSocket = null;
+			int port = 9999;
+			
+	}
+	
+}

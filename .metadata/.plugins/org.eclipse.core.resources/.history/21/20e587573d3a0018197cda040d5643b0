@@ -1,0 +1,12 @@
+import java.net.Socket;
+
+
+public class ClientThread extends Thread{
+	
+	Server server = null;
+	
+	public ClientThread(Server server, Socket clSocket){
+		this.
+	}
+	
+}
