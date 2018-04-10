@@ -7,7 +7,6 @@ public class Point implements Serializable{
 	static final long serialVersionUID = 1L;
 	public int x;
 	public int y;
-	public int id;
 	
 	public Point(int x, int y){
 		super();

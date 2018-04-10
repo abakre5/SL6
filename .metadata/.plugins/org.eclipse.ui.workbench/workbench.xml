@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="13" version="2.0">
+<workbench progressCount="18" version="2.0">
 <workbenchAdvisor/>
 <window height="768" maximized="true" width="1024" x="65" y="24">
 <fastViewData fastViewLocation="1024"/>
@@ -21,7 +21,7 @@
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.eclipse.jdt.ui.ClassFileEditor" itemType="typePlaceholder" x="-1" y="-1"/>
-<coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
 </coolbarLayout>
@@ -30,16 +30,10 @@
 <editorArea activeWorkbook="DefaultEditorWorkbook">
 <info part="DefaultEditorWorkbook">
 <folder appearance="1" expanded="2">
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
-</presentation>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Player.java" partName="Player.java" path="/home/hduser/SL6/Assignment6/src/Player.java" title="Player.java" tooltip="Assignment6/src/Player.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Assignment6/src/Player.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
-</editor>
 </editors>
 <views>
 <view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc"/>
@@ -78,7 +72,9 @@
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
+<category IMemento.internal.id="Errors"/>
 <category IMemento.internal.id="Warnings (1 item)"/>
+<category IMemento.internal.id="Warnings"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="677" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="350"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
@@ -243,7 +239,7 @@
 <view id="org.eclipse.ui.views.ProblemView" ratio="0.3"/>
 <view id="org.eclipse.jdt.ui.JavadocView" ratio="0.3"/>
 <view id="org.eclipse.jdt.ui.SourceView" ratio="0.3"/>
-<view id="org.eclipse.ui.console.ConsoleView" ratio="0.10849539"/>
+<view id="org.eclipse.ui.console.ConsoleView" ratio="0.32036847"/>
 </fastViews>
 </fastViewBar>
 </fastViewBars>
@@ -408,172 +404,7 @@
 </perspective>
 </perspectives>
 <workingSets/>
-<navigationHistory>
-<editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Assignment11/src/Kmeans.java"/>
-<editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" org.eclipse.jdt.ui.ClassFileIdentifier="=Assignment11/\/usr\/lib\/jvm\/java-8-oracle\/jre\/lib\/rt.jar&lt;java.util(ArrayList.class"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Assignment11/src/Point.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Assignment11/src/Cluster.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Assignment4/src/Partitioning.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Assignment5/src/Client.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Assignment5/src/ClientThread.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Assignment5/src/Server.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Assignment5/src/Client.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Assignment5/src/Server.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Assignment6/src/Player.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/Assignment6/package.jdo.xml"/>
-</editors>
-<item historyLabel="Kmeans.java" index="0">
-<position/>
-</item>
-<item historyLabel="Kmeans.java" index="0">
-<position/>
-</item>
-<item historyLabel="Kmeans.java" index="0">
-<position/>
-</item>
-<item historyLabel="Kmeans.java" index="0">
-<position/>
-</item>
-<item historyLabel="Kmeans.java" index="0">
-<position/>
-</item>
-<item historyLabel="Point.java" index="2">
-<position info="not_deleted" x="366" y="0"/>
-</item>
-<item historyLabel="Cluster.java" index="3">
-<position info="not_deleted" x="650" y="0"/>
-</item>
-<item historyLabel="Kmeans.java" index="0">
-<position/>
-</item>
-<item historyLabel="ArrayList.class" index="1">
-<position info="not_deleted" x="10363" y="0"/>
-</item>
-<item historyLabel="Kmeans.java" index="0">
-<position/>
-</item>
-<item historyLabel="Cluster.java" index="3">
-<position/>
-</item>
-<item historyLabel="Kmeans.java" index="0">
-<position/>
-</item>
-<item historyLabel="Kmeans.java" index="0">
-<position/>
-</item>
-<item historyLabel="Cluster.java" index="3">
-<position info="not_deleted" x="518" y="0"/>
-</item>
-<item historyLabel="Kmeans.java" index="0">
-<position/>
-</item>
-<item historyLabel="Kmeans.java" index="0">
-<position/>
-</item>
-<item historyLabel="Cluster.java" index="3">
-<position info="not_deleted" x="224" y="0"/>
-</item>
-<item historyLabel="Kmeans.java" index="0">
-<position/>
-</item>
-<item historyLabel="Point.java" index="2">
-<position info="not_deleted" x="366" y="0"/>
-</item>
-<item historyLabel="Cluster.java" index="3">
-<position info="not_deleted" x="224" y="0"/>
-</item>
-<item historyLabel="Point.java" index="2">
-<position info="not_deleted" x="366" y="0"/>
-</item>
-<item historyLabel="Cluster.java" index="3">
-<position info="not_deleted" x="224" y="0"/>
-</item>
-<item historyLabel="Kmeans.java" index="0">
-<position/>
-</item>
-<item historyLabel="Kmeans.java" index="0">
-<position/>
-</item>
-<item historyLabel="Kmeans.java" index="0">
-<position/>
-</item>
-<item historyLabel="Kmeans.java" index="0">
-<position/>
-</item>
-<item historyLabel="Point.java" index="2">
-<position info="not_deleted" x="395" y="0"/>
-</item>
-<item historyLabel="Kmeans.java" index="0">
-<position/>
-</item>
-<item historyLabel="Kmeans.java" index="0">
-<position/>
-</item>
-<item historyLabel="Kmeans.java" index="0">
-<position/>
-</item>
-<item historyLabel="Kmeans.java" index="0">
-<position/>
-</item>
-<item historyLabel="Kmeans.java" index="0">
-<position/>
-</item>
-<item historyLabel="Kmeans.java" index="0">
-<position info="not_deleted" x="3260" y="0"/>
-</item>
-<item historyLabel="Kmeans.java" index="0">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Kmeans.java" index="0">
-<position info="not_deleted" x="1029" y="0"/>
-</item>
-<item historyLabel="Partitioning.java" index="4">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Client.java" index="5">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Client.java" index="5">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Client.java" index="5">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="ClientThread.java" index="6">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="ClientThread.java" index="6">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Server.java" index="7">
-<position info="not_deleted" x="275" y="0"/>
-</item>
-<item historyLabel="ClientThread.java" index="6">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Server.java" index="7">
-<position info="not_deleted" x="275" y="0"/>
-</item>
-<item historyLabel="ClientThread.java" index="6">
-<position info="not_deleted" x="620" y="0"/>
-</item>
-<item historyLabel="Client.java" index="8">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Server.java" index="9">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Player.java" index="10">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="package.jdo.xml" index="11">
-<position info="not_deleted" x="182" y="0"/>
-</item>
-<item active="true" historyLabel="Player.java" index="10">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-</navigationHistory>
+<navigationHistory/>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
 <workbenchWindowAdvisor/>
@@ -591,17 +422,14 @@
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="package.jdo.xml" tooltip="Assignment6/package.jdo.xml">
-<persistable path="/Assignment6/package.jdo.xml"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Player.java" tooltip="Assignment6/src/Player.java">
-<persistable path="/Assignment6/src/Player.java"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ClientThread.java" tooltip="Assignment5/src/ClientThread.java">
 <persistable path="/Assignment5/src/ClientThread.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Server.java" tooltip="Assignment5/src/Server.java">
 <persistable path="/Assignment5/src/Server.java"/>
+</file>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="Runnable.class" tooltip="java.lang.Runnable">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=Assignment5/\/usr\/lib\/jvm\/java-8-oracle\/jre\/lib\/rt.jar&lt;java.lang(Runnable.class"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Client.java" tooltip="Assignment5/src/Client.java">
 <persistable path="/Assignment5/src/Client.java"/>
@@ -609,17 +437,35 @@
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Partitioning.java" tooltip="Assignment4/src/Partitioning.java">
 <persistable path="/Assignment4/src/Partitioning.java"/>
 </file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PageRank.java" tooltip="Assignment10/src/PageRank.java">
+<persistable path="/Assignment10/src/PageRank.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Kmeans.java" tooltip="Assignment11/src/Kmeans.java">
 <persistable path="/Assignment11/src/Kmeans.java"/>
-</file>
-<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="ArrayList.class" tooltip="java.util.ArrayList">
-<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=Assignment11/\/usr\/lib\/jvm\/java-8-oracle\/jre\/lib\/rt.jar&lt;java.util(ArrayList.class"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Cluster.java" tooltip="Assignment11/src/Cluster.java">
 <persistable path="/Assignment11/src/Cluster.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Point.java" tooltip="Assignment11/src/Point.java">
 <persistable path="/Assignment11/src/Point.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="Kmeans.java~" tooltip="Assignment11/src/Kmeans.java~">
+<persistable path="/Assignment11/src/Kmeans.java~"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="JdoMain.java" tooltip="Assignment6/src/JdoMain.java">
+<persistable path="/Assignment6/src/JdoMain.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Point.java" tooltip="Assignment6/src/Point.java">
+<persistable path="/Assignment6/src/Point.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="point.java" tooltip="Assignment6/src/point.java">
+<persistable path="/Assignment6/src/point.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="plane.java" tooltip="Assignment6/src/plane.java">
+<persistable path="/Assignment6/src/plane.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="jdoquery.java" tooltip="Assignment6/src/jdoquery.java">
+<persistable path="/Assignment6/src/jdoquery.java"/>
 </file>
 </mruList>
 </workbench>

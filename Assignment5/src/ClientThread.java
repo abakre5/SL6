@@ -12,7 +12,6 @@ public class ClientThread extends Thread{
 	DataInputStream dataInputStream;
 	String line, name;
 	
-	
 	public ClientThread(Server server, Socket clSocket){
 		this.server = server;
 		this.clSocket = clSocket;

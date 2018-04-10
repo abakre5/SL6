@@ -12,7 +12,6 @@ public class ClientThread extends Thread{
 	DataInputStream dataInputStream;
 	String line, name;
 	
-	
 	public ClientThread(Server server, Socket clSocket){
 		this.server = server;
 		this.clSocket = clSocket;
@@ -23,7 +22,7 @@ public class ClientThread extends Thread{
 		try {
 			dataInputStream = new DataInputStream(clSocket.getInputStream());
 			printStream = new PrintStream(clSocket.getOutputStream());
-			.println("Enter name :: ");
+			printStream.println("Enter name :: ");
 			name = dataInputStream.readLine();
 			printStream.println("Welcome " + name + " to this 2 Phase Application.\nYou will receive a vote Request now...");
 			printStream.println("VOTE_REQUEST\nPlease enter COMMIT or ABORT to proceed : ");

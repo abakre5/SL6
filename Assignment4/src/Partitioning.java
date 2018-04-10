@@ -17,7 +17,7 @@ public class Partitioning{
 		
 		cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
 		session = cluster.connect();
-		session.execute("CREATE KEYSPACE IF NOT EXISTS keyspace2 WITH replication " + "= {'class':'SimpleStrategy','replication_factor':1}; ");
+		session.execute("CREATE KEYSPACE IF NOT EXISTS keyspace2 WITH replication = {'class':'SimpleStrategy','replication_factor':1}; ");
 		session.execute("USE keyspace2");
 		session.execute("CREATE TABLE IF NOT EXISTS users (name text PRIMARY KEY, age int);");
 		session.execute("INSERT INTO users (name, age) VALUES ('Abhishek', 22);");

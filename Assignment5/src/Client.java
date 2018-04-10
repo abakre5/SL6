@@ -12,7 +12,6 @@ public class Client implements Runnable{
 	static PrintStream printStream = null;
 	static DataInputStream dataInputStream = null;
 	static BufferedReader bufferedReader = null;
-	static boolean closed = false;
 	
 	public static void main(String args[]) throws Exception{
 		String host = "localhost";
@@ -39,7 +38,6 @@ public class Client implements Runnable{
 				if(line.equals("GLOBAL_COMMIT") == true || line.equals("GLOBAL_ABORT") == true)
 					break;
 			}
-			closed = true;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

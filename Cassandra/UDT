@@ -1,0 +1,216 @@
+hduser@abhishek-HP-Pavilion-Notebook:~$ cqlsh
+Connected to Test Cluster at 127.0.0.1:9042.
+[cqlsh 5.0.1 | Cassandra 3.11.2 | CQL spec 3.4.4 | Native protocol v4]
+Use HELP for help.
+cqlsh> DESC Keyspace
+Not in any keyspace.
+cqlsh> DESC Keyspaces;
+
+system_schema  system     mykeyspace  system_distributed
+system_auth    keyspace2  keyspace1   system_traces     
+
+cqlsh> CREATE KEYSPACE practical;
+SyntaxException: line 1:25 mismatched input ';' expecting K_WITH (CREATE KEYSPACE practical[;])
+cqlsh> CREATE KEYSPACE practical 
+   ... ;
+SyntaxException: line 2:0 mismatched input ';' expecting K_WITH (CREATE KEYSPACE practical [;])
+cqlsh> 
+cqlsh> CREATE KEYSPACE practical 
+   ... whit REplication = {'class':'Simple', 'replication_factor':1};
+SyntaxException: line 2:0 mismatched input 'whit' expecting K_WITH (CREATE KEYSPACE practical [whit]...)
+cqlsh> CREATE KEYSPACE practical  with REplication = {'class':'Simple', 'replication_factor':1};
+ConfigurationException: Unable to find replication strategy class 'org.apache.cassandra.locator.Simple'
+cqlsh> CREATE KEYSPACE practical  with REplication = {'class':'SimpleStrategy', 'replication_factor':1};
+cqlsh> CREATE TABLE songs(
+   ... id int,
+   ... title text,
+   ... artist set<text>,
+   ... length long
+   ... ,
+   ... primary key(id)
+   ... );
+InvalidRequest: Error from server: code=2200 [Invalid query] message="No keyspace has been specified. USE a keyspace, or explicitly specify keyspace.tablename"
+cqlsh> CREATE TABLE songs( id int, title text, artist set<text>, length long , primary key(id) );
+InvalidRequest: Error from server: code=2200 [Invalid query] message="No keyspace has been specified. USE a keyspace, or explicitly specify keyspace.tablename"
+cqlsh> use practiuse practical ;
+h long , primary key(id) );LE songs( id int, title text, artist set<text>, lengt 
+InvalidRequest: Error from server: code=2200 [Invalid query] message="Unknown type practical.long"
+h long , primary key(id) );LE songs( id int, title text, artist set<text>, lengt 
+InvalidRequest: Error from server: code=2200 [Invalid query] message="Unknown type practical.long"
+cqlsh:practical> Create TABLE songs(
+             ... id int primary key,
+             ... title text,
+             ... artist set<text>,
+             ... length long,
+             ... );                                                   ;
+cqlsh:practical> 
+cqlsh:practical> d int primary key, title text, artist set<t
+cqlsh:practical> Create TABLE songs( id int primary key, title text, artist set<text>, length double);
+cqlsh:practical> desc songs ;
+
+CREATE TABLE practical.songs (
+    id int PRIMARY KEY,
+    artist set<text>,
+    length double,
+    title text
+) WITH bloom_filter_fp_chance = 0.01
+    AND caching = {'keys': 'ALL', 'rows_per_partition': 'NONE'}
+    AND comment = ''
+    AND compaction = {'class': 'org.apache.cassandra.db.compaction.SizeTieredCompactionStrategy', 'max_threshold': '32', 'min_threshold': '4'}
+    AND compression = {'chunk_length_in_kb': '64', 'class': 'org.apache.cassandra.io.compress.LZ4Compressor'}
+    AND crc_check_chance = 1.0
+    AND dclocal_read_repair_chance = 0.1
+    AND default_time_to_live = 0
+    AND gc_grace_seconds = 864000
+    AND max_index_interval = 2048
+    AND memtable_flush_period_in_ms = 0
+    AND min_index_interval = 128
+    AND read_repair_chance = 0.0
+    AND speculative_retry = '99PERCENTILE';
+
+cqlsh:practical> INSERT INTO songs (id, artist , length , title ) VALUES ( 1, {'Abhishek','Amruta'}, 4:34, 'Hello');
+SyntaxException: line 1:85 mismatched input ':' expecting ')' (..., {'Abhishek','Amruta'}, 4[:]...)
+cqlsh:practical> INSERT INTO songs (id, artist , length , title ) VALUES ( 1, {'Abhishek':'Amruta'}, 4:34, 'Hello');
+SyntaxException: line 1:85 mismatched input ':' expecting ')' (..., {'Abhishek':'Amruta'}, 4[:]...)
+cqlsh:practical> INSERT INTO songs (id, artist , length , title ) VALUES ( 1, {'Abhishek','Amruta'}, 4.34, 'Hello');
+cqlsh:practical> INSERT INTO songs (id, artist , length , title ) VALUES ( 2, {'Abhishek'}, 3.24, 'Bye');
+cqlsh:practical> INSERT INTO songs (id, artist , length , title ) VALUES ( 3, {'Amruta'}, 4.01, 'Tatta');
+cqlsh:practical> SELECT * FROM songs;
+
+ id | artist                 | length | title
+----+------------------------+--------+-------
+  1 | {'Abhishek', 'Amruta'} |   4.34 | Hello
+  2 |           {'Abhishek'} |   3.24 |   Bye
+  3 |             {'Amruta'} |   4.01 | Tatta
+
+(3 rows)
+cqlsh:practical> Create TABLE book( book_id int primary key, title text, artist set<text>, length double);
+cqlsh:practical> CREATE TABLE playlist(
+             ... Book
+cqlsh:practical> CREATE TABLE lib(
+             ... Books book,
+             ... Author set<text>,
+             ... cost double,
+             ... category list<text>
+             ... );
+InvalidRequest: Error from server: code=2200 [Invalid query] message="Unknown type practical.book"
+cqlsh:practical> show tables;
+Improper show command.
+cqlsh:practical> DESC TABLE
+Improper DESC command.
+cqlsh:practical> DESC TABLE;
+Improper DESC command.
+cqlsh:practical> DESC TABLES ;
+
+book  songs
+
+cqlsh:practical> CREATE TABLE lib( Books frozen<book>, Author set<text>, cost double, category list<text> );
+InvalidRequest: Error from server: code=2200 [Invalid query] message="Unknown type practical.book"
+cqlsh:practical> CREATE type book(book_id int, book_name text);
+cqlsh:practical> CREATE TABLE lib( Books frozen<book>, Author set<text>, cost double, category list<text> );
+InvalidRequest: Error from server: code=2200 [Invalid query] message="No PRIMARY KEY specifed (exactly one required)"
+cqlsh:practical> CREATE TABLE lib( Books frozen<book>, Author set<text>, cost double, category list<text>, primary key(Author, category) );
+InvalidRequest: Error from server: code=2200 [Invalid query] message="Invalid non-frozen collection type for PRIMARY KEY component author"
+cqlsh:practical> CREATE TABLE lib(id int, Books frozen<book>, Author set<text>, cost double, category list<text>, primary key(id) );
+cqlsh:practical> DESC lib ;
+
+CREATE TABLE practical.lib (
+    id int PRIMARY KEY,
+    author set<text>,
+    books frozen<book>,
+    category list<text>,
+    cost double
+) WITH bloom_filter_fp_chance = 0.01
+    AND caching = {'keys': 'ALL', 'rows_per_partition': 'NONE'}
+    AND comment = ''
+    AND compaction = {'class': 'org.apache.cassandra.db.compaction.SizeTieredCompactionStrategy', 'max_threshold': '32', 'min_threshold': '4'}
+    AND compression = {'chunk_length_in_kb': '64', 'class': 'org.apache.cassandra.io.compress.LZ4Compressor'}
+    AND crc_check_chance = 1.0
+    AND dclocal_read_repair_chance = 0.1
+    AND default_time_to_live = 0
+    AND gc_grace_seconds = 864000
+    AND max_index_interval = 2048
+    AND memtable_flush_period_in_ms = 0
+    AND min_index_interval = 128
+    AND read_repair_chance = 0.0
+    AND speculative_retry = '99PERCENTILE';
+
+cqlsh:practical> insert INTO lib (id, author, books, category, cost)(1, {'abhishek'},{1, 'Abhishek'}, {'Rom,'Th'}, 1220.0);
+             ... 
+             ... ;
+             ... '
+             ... ;
+SyntaxException: line 1:51 mismatched input '(' expecting K_VALUES (..., books, category, cost)[(]...)
+cqlsh:practical> 
+cqlsh:practical> insert INTO lib (id, author, books, category, cost)values (1, {'abhishek'},{1, 'Abhishek'}, {'Rom,'Th'}, 1220.0);  ; ' ;
+SyntaxException: line 1:99 no viable alternative at input 'Th' (...{1, 'Abhishek'}, {'Rom,'[Th]...)
+cqlsh:practical> insert INTO lib (id, author, books, category, cost)values (1, {'abhishek'},{1, 'Abhishek'}, {'Rom','Th'}, 1220.0);  ; ' ;
+             ... 
+cqlsh:practical> insert INTO lib (id, author, books, category, cost)values (1, {'abhishek'},{1, 'Abhishek'}, {'Rom','Th'}, 1220.0);
+InvalidRequest: Error from server: code=2200 [Invalid query] message="Invalid set literal for books of type frozen<book>"
+cqlsh:practical> insert INTO lib (id, author, books, category, cost)values (1, {'abhishek'},{'book_id':1, 'book_name':'Abhishek'}, {'Rom','Th'}, 1220.0);
+InvalidRequest: Error from server: code=2200 [Invalid query] message="Invalid map literal for books of type frozen<book>"
+cqlsh:practical> insert INTO lib (id, author, books, category, cost)values (1, {'abhishek'},{'book_id':'1', 'book_name':'Abhishek'}, {'Rom','Th'}, 1220.0);
+InvalidRequest: Error from server: code=2200 [Invalid query] message="Invalid map literal for books of type frozen<book>"
+cqlsh:practical> insert INTO lib (id, author, books, category, cost)values (1, {'abhishek'},, {'Rom','Th'}, 1220.0);
+SyntaxException: line 1:75 no viable alternative at input ',' (...values (1, {'abhishek'},[,]...)
+cqlsh:practical> insert INTO lib (id, author, books, category, cost)values (1, {'abhishek'}, {'Rom','Th'}, 1220.0);
+InvalidRequest: Error from server: code=2200 [Invalid query] message="Unmatched column names/values"
+cqlsh:practical> insert INTO lib (id, author, category, cost)values (1, {'abhishek'}, {'Rom','Th'}, 1220.0);
+InvalidRequest: Error from server: code=2200 [Invalid query] message="Invalid set literal for category of type list<text>"
+cqlsh:practical> insert INTO lib (id, author, category, cost)values (1, {'abhishek'}, ['Rom','Th'], 1220.0);
+cqlsh:practical> SELECT * FROM lib ;
+
+ id | author       | books | category      | cost
+----+--------------+-------+---------------+------
+  1 | {'abhishek'} |  null | ['Rom', 'Th'] | 1220
+
+(1 rows)
+cqlsh:practical> UPDATE lib SET books = {book_id:1, book_name:'tez'} where id = 1;
+cqlsh:practical> SELECT * FROM lib ;
+
+ id | author       | books                          | category      | cost
+----+--------------+--------------------------------+---------------+------
+  1 | {'abhishek'} | {book_id: 1, book_name: 'tez'} | ['Rom', 'Th'] | 1220
+
+(1 rows)
+cqlsh:practical> insert INTO lib (id, author, category, cost)values (2, {'amruta'}, ['Th'], 220.0);
+cqlsh:practical> UPDATE lib SET books = {book_id:2, book_name:'upi'} where id = 2;
+cqlsh:practical> SELECT * FROM lib ;
+
+ id | author       | books                          | category      | cost
+----+--------------+--------------------------------+---------------+------
+  1 | {'abhishek'} | {book_id: 1, book_name: 'tez'} | ['Rom', 'Th'] | 1220
+  2 |   {'amruta'} | {book_id: 2, book_name: 'upi'} |        ['Th'] |  220
+
+(2 rows)
+
+
+
+
+
+
+
+
+cqlsh:practical> CREATE INDEX on lib (books);
+
+
+
+
+
+
+
+
+
+
+cqlsh:practical> SELECT * FROM lib where cost > 1000 Allow FILTERING ;
+
+ id | author       | books                          | category      | cost
+----+--------------+--------------------------------+---------------+------
+  1 | {'abhishek'} | {book_id: 1, book_name: 'tez'} | ['Rom', 'Th'] | 1220
+
+
+
+
+cqlsh:practical> SELECT books.book_name FROM lib where author contains 'abhishek' ALLOW FILTERING ;
+
