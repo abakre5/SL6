@@ -1,0 +1,16 @@
+import java.io.Serializable;
+
+
+public class Point implements Serializable{
+	
+	public int x;
+	public int y;
+	public int id;
+	
+	public Point(int x, int y){
+		super();
+		this.x = x;
+		this.y = y;
+	}
+	
+}

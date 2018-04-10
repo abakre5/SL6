@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Kmeans {
 
 	private static final int NUM_CLUSTER = 3;
@@ -39,19 +38,17 @@ public class Kmeans {
 		while(true){
 			ClearClusters();
 			List<Point> lastCentroids = getCentroids();
-			for(int i = 0;i < lastCentroids.size();i++)	System.out.println("l " + lastCentroids.get(i).x);
 			assignCluster();
 			calculateCentroids();
 			it++;
 			List<Point> currentCentroids = getCentroids();
-			for(int i = 0;i < currentCentroids.size();i++)	System.out.println("c " + currentCentroids.get(i).x);
 			double distanceBetweenCentroids = 0;
 			for (int i = 0; i < lastCentroids.size(); i++) {
 				System.out.println(lastCentroids.get(i).x + " " + currentCentroids.get(i).x);
 				distanceBetweenCentroids += Point.Distance(lastCentroids.get(i), currentCentroids.get(i));
 			}
 			
-			System.out.println("############ Iteration Number " + it + " ############");
+			System.out.println("\n############ Iteration Number " + it + " ############");
 			System.out.println("Centroid Distnace :: " + distanceBetweenCentroids);
 			PlotCluster();
 			if(distanceBetweenCentroids	== 0)	break;
@@ -75,12 +72,10 @@ public class Kmeans {
 	}
 
 	private void assignCluster() {
-		double max = Double.MAX_VALUE;
-		double min = max; 
 		int cluster = 0;                 
 		double distance = 0.0; 
 		for(int i = 0;i < points.size();i++){
-			min = max;
+			min = Double.MAX_VALUE;
 			for (int j = 0; j < clusters.size(); j++) {
 				distance = Point.Distance(points.get(i), clusters.get(j).centroid);
 				if(distance < min){
@@ -96,7 +91,8 @@ public class Kmeans {
 	private List<Point> getCentroids() {
 		List<Point> centroids = new ArrayList<Point>();
 		for(int i = 0;i < clusters.size();i++){
-			Point aux = clusters.get(i).centroid;
+			//Point aux = clusters.get(i).centroid;
+			Point aux = new Point(clusters.get(i).centroid.x, clusters.get(i).centroid.y);
 			centroids.add(aux);
 		}
 		return centroids;

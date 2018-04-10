@@ -1,0 +1,16 @@
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+
+public class JdoMain {
+
+	public static void main(String[] args) {
+		
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("$objectdb/points.odb");
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		
+	}
+
+}

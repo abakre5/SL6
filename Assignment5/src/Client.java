@@ -25,10 +25,6 @@ public class Client implements Runnable{
 		
 		if(clientSocket != null && printStream != null && dataInputStream != null){
 			new Thread(new Client()).start();
-			while(!closed){
-				printStream.println(bufferedReader.readLine());
-			}
-			
 			printStream.close();
 			dataInputStream.close();
 			bufferedReader.close();
@@ -36,11 +32,10 @@ public class Client implements Runnable{
 	}
 	
 	@SuppressWarnings("deprecation")
-	public void run() {
+	public void run(){
 		String line;
 		try {
 			while((line = dataInputStream.readLine()) != null){
-				System.out.println(line);
 				if(line.equals("GLOBAL_COMMIT") == true || line.equals("GLOBAL_ABORT") == true)
 					break;
 			}

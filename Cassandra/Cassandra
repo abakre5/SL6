@@ -1,0 +1,155 @@
+hduser@abhishek-HP-Pavilion-Notebook:~$ cqlsh
+Connected to Test Cluster at 127.0.0.1:9042.
+[cqlsh 5.0.1 | Cassandra 3.11.2 | CQL spec 3.4.4 | Native protocol v4]
+Use HELP for help.
+cqlsh> DESC KEYSPACES;
+
+system_schema  system     mykeyspace  system_distributed
+system_auth    keyspace2  keyspace1   system_traces     
+
+cqlsh> USE keyspace2 ;
+cqlsh:keyspace2> DESC TABLE;
+Improper DESC command.
+cqlsh:keyspace2> DESC TABLES ;
+
+users
+
+cqlsh:keyspace2> CREATE TABLE Book(
+             ... book_id int,
+             ... book_name text
+             ... );
+InvalidRequest: Error from server: code=2200 [Invalid query] message="No PRIMARY KEY specifed (exactly one required)"
+cqlsh:keyspace2> CREATE TABLE Book( book_id int, book_name text, PRIMARY_KEY(book_id, book_name));
+SyntaxException: line 1:59 no viable alternative at input '(' (... int, book_name text, PRIMARY_KEY[(]...)
+cqlsh:keyspace2> CREATE TABLE Book( book_id int, book_name text, PRIMARY KEY(book_id, book_name));
+cqlsh:keyspace2> DESC book 
+
+CREATE TABLE keyspace2.book (
+    book_id int,
+    book_name text,
+    PRIMARY KEY (book_id, book_name)
+) WITH CLUSTERING ORDER BY (book_name ASC)
+    AND bloom_filter_fp_chance = 0.01
+    AND caching = {'keys': 'ALL', 'rows_per_partition': 'NONE'}
+    AND comment = ''
+    AND compaction = {'class': 'org.apache.cassandra.db.compaction.SizeTieredCompactionStrategy', 'max_threshold': '32', 'min_threshold': '4'}
+    AND compression = {'chunk_length_in_kb': '64', 'class': 'org.apache.cassandra.io.compress.LZ4Compressor'}
+    AND crc_check_chance = 1.0
+    AND dclocal_read_repair_chance = 0.1
+    AND default_time_to_live = 0
+    AND gc_grace_seconds = 864000
+    AND max_index_interval = 2048
+    AND memtable_flush_period_in_ms = 0
+    AND min_index_interval = 128
+    AND read_repair_chance = 0.0
+    AND speculative_retry = '99PERCENTILE';
+
+cqlsh:keyspace2> INSERT INTO book (book_id , book_name) VALUES (1, "ABC");
+SyntaxException: line 1:55 no viable alternative at input ')' (... book_name) VALUES (1, ["AB]C")...)
+cqlsh:keyspace2> INSERT INTO book (book_id , book_name) VALUES (1, 'ABC');
+cqlsh:keyspace2> INSERT INTO book (book_id , book_name) VALUES (2, 'XYZ');
+cqlsh:keyspace2> INSERT INTO book (book_id , book_name) VALUES (3, 'PQR');
+cqlsh:keyspace2> SELECT * FROM book;
+
+ book_id | book_name
+---------+-----------
+       1 |       ABC
+       2 |       XYZ
+       3 |       PQR
+
+(3 rows)
+cqlsh:keyspace2> CREATE TABLE Library_System(
+             ... Book book,
+             ... Author_Name text,
+             ... Cost int,
+             ... Category text,
+             ... PRIMARY KEY(Book)
+             ... );
+InvalidRequest: Error from server: code=2200 [Invalid query] message="Unknown type keyspace2.book"
+cqlsh:keyspace2> CREATE TABLE Library_System( Book book, Author_Name text, Cost int, Category text, PRIMARY KEY(Book) );
+InvalidRequest: Error from server: code=2200 [Invalid query] message="Unknown type keyspace2.book"
+cqlsh:keyspace2> CREATE TABLE Library_System( book_id int, book_name text, Author_Name text, Cost int, Category <set>text, PRIMARY KEY(book_id, book_name) );
+SyntaxException: line 1:95 no viable alternative at input '<' (...text, Cost int, Category [<]...)
+cqlsh:keyspace2> CREATE TABLE Library_System( book_id int, book_name text, Author_Name text, Cost int, Category set<text>, PRIMARY KEY(book_id, book_name) );
+cqlsh:keyspace2> INSERT INTO library_system (book_id , book_name , author_name , cost , category) VALUES ( 1, "ABC", "Abhishek", 120, {'Romantic', ''});
+SyntaxException: line 1:98 no viable alternative at input ',' (...category) VALUES ( 1, ["AB]C",...)
+cqlsh:keyspace2> INSERT INTO library_system (book_id , book_name , author_name , cost , category) VALUES ( 1, "ABC", "Abhishek", 120, {'Romantic', 'Test'});
+SyntaxException: line 1:98 no viable alternative at input ',' (...category) VALUES ( 1, ["AB]C",...)
+cqlsh:keyspace2> INSERT INTO library_system (book_id , book_name , author_name , cost , category) VALUES ( 1, "ABC", "Abhishek", 120, {'Romantic', 'Test'});
+SyntaxException: 
+ cost , category) VALUES ( 1, "ABC", "Abhishek", 120, {'Romantic', 'Test'});me , 
+SyntaxException: line 1:98 no viable alternative at input ',' (...category) VALUES ( 1, ["AB]C",...)
+ cost , category) VALUES ( 1, "ABC", "Abhishek", 120, {'Romantic', 'Test'});me , 
+SyntaxException: line 1:98 no viable alternative at input ',' (...category) VALUES ( 1, ["AB]C",...)
+cqlsh:keyspace2> 
+ 
+cqlsh:keyspace2> 
+cqlsh:keyspace2> 
+cqlsh:keyspace2> 
+cqlsh:keyspace2> 
+cqlsh:keyspace2> EXIT
+hduser@abhishek-HP-Pavilion-Notebook:~$ cqlsh
+Connected to Test Cluster at 127.0.0.1:9042.
+[cqlsh 5.0.1 | Cassandra 3.11.2 | CQL spec 3.4.4 | Native protocol v4]
+Use HELP for help.
+cqlsh> use keyspace2 ;
+cqlsh:keyspace2> INSERT INTO library_system (book_id , book_name , author_name , cost , category ) VALUES (1, "ABC", );
+SyntaxException: line 1:98 no viable alternative at input ',' (...category ) VALUES (1, ["AB]C",...)
+cqlsh:keyspace2> INSERT INTO library_system (book_id , book_name , author_name , cost , category ) VALUES (1, 'ABC', 'Abhi', 120, {'Rom', 'Gen'});
+cqlsh:keyspace2> SELECT * FROM library_system ;
+
+ book_id | book_name | author_name | category       | cost
+---------+-----------+-------------+----------------+------
+       1 |       ABC |        Abhi | {'Gen', 'Rom'} |  120
+
+(1 rows)
+cqlsh:keyspace2> INSERT INTO library_system (book_id , book_name , author_name , cost , category ) VALUES (2, 'PQR', 'Amy', 420, {'Gen'});
+cqlsh:keyspace2> SELECT * FROM library_system ;
+
+ book_id | book_name | author_name | category       | cost
+---------+-----------+-------------+----------------+------
+       1 |       ABC |        Abhi | {'Gen', 'Rom'} |  120
+       2 |       PQR |         Amy |        {'Gen'} |  420
+
+(2 rows)
+cqlsh:keyspace2> SELECT * FROM library_system where cost > 130;
+InvalidRequest: Error from server: code=2200 [Invalid query] message="Cannot execute this query as it might involve data filtering and thus may have unpredictable performance. If you want to execute this query despite the performance unpredictability, use ALLOW FILTERING"
+cqlsh:keyspace2> SELECT * FROM library_system where id = 1 AND cost > 130;
+InvalidRequest: Error from server: code=2200 [Invalid query] message="Undefined column name id"
+cqlsh:keyspace2> SELECT * FROM library_system where book_id = 1 AND cost > 130;
+InvalidRequest: Error from server: code=2200 [Invalid query] message="Cannot execute this query as it might involve data filtering and thus may have unpredictable performance. If you want to execute this query despite the performance unpredictability, use ALLOW FILTERING"
+cqlsh:keyspace2> SELECT * FROM library_system where cost > 130;
+InvalidRequest: Error from server: code=2200 [Invalid query] message="Cannot execute this query as it might involve data filtering and thus may have unpredictable performance. If you want to execute this query despite the performance unpredictability, use ALLOW FILTERING"
+cqlsh:keyspace2> SELECT * FROM library_system where cost > 130 ’ allow filtering;;
+Invalid syntax at line 1, char 47
+  SELECT * FROM library_system where cost > 130 ’ allow filtering;;
+                                                ^
+cqlsh:keyspace2> SELECT * FROM library_system where cost > 130 allow filtering;;
+
+ book_id | book_name | author_name | category | cost
+---------+-----------+-------------+----------+------
+       2 |       PQR |         Amy |  {'Gen'} |  420
+
+(1 rows)
+SyntaxException: line 1:0 no viable alternative at input ';' ([;])
+cqlsh:keyspace2> SELECT * FROM library_system where cost > 130 allow filtering;
+
+ book_id | book_name | author_name | category | cost
+---------+-----------+-------------+----------+------
+       2 |       PQR |         Amy |  {'Gen'} |  420
+
+(1 rows)
+cqlsh:keyspace2> SELECT * FROM library_system where category contains 'Gen' allow filtering;
+
+ book_id | book_name | author_name | category       | cost
+---------+-----------+-------------+----------------+------
+       1 |       ABC |        Abhi | {'Gen', 'Rom'} |  120
+       2 |       PQR |         Amy |        {'Gen'} |  420
+
+(2 rows)
+cqlsh:keyspace2> SELECT * FROM library_system where category contains 'Rom' allow filtering;
+
+ book_id | book_name | author_name | category       | cost
+---------+-----------+-------------+----------------+------
+       1 |       ABC |        Abhi | {'Gen', 'Rom'} |  120
+
